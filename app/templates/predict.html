@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<style>
+
+
+</style>
+
+<html>
+    <head>
+        <title>Predict</title>
+    </head>
+    <body>
+        <form id="info">
+            <input type="number" name="Age" placeholder="Enter an age">
+            <input type="number" name="Length_of_Stay" placeholder="How long did you stay?(number)">
+            <input type="number" name="Num_Prior_Admissions" placeholder="How many previous admissions has this patient had?">
+            <input type="number" name="Blood_Pressure" placeholder="What was the blood pressure?">
+            <input type="number" name="Heart_Rate" placeholder="What was the heart rate?">
+            <input type="submit" value="Submit Information">
+        </form>
+        <div id="results"></div>
+
+
+    </body>
+</html>
+
+<script>
+    document.getElementById('info').addEventListener('submit', function(e) {
+        e.preventDefault()
+
+        const formData = new FormData(this)
+        console.log("Here")
+        fetch('/post-result', {
+            method: 'POST',
+            body: formData
+        }).then(response => response.text())
+  .then(data => {
+    document.getElementById('results').innerHTML = data;
+  })
+  .catch(error => console.error('Error:', error));
+
+    })
+
+</script>
