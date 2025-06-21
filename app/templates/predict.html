@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <style>
 
+#return-to-home {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #0078D7;
+    background-color: #00d736;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
 
+#return-to-home:hover {
+    background-color: #000000;
+}
 </style>
 
 <html>
@@ -18,7 +30,7 @@
             <input type="submit" value="Submit Information">
         </form>
         <div id="results"></div>
-
+        <a href="/" id="return-to-home">Return to Home Page</a>
 
     </body>
 </html>
@@ -28,7 +40,6 @@
         e.preventDefault()
 
         const formData = new FormData(this)
-        console.log("Here")
         fetch('/post-result', {
             method: 'POST',
             body: formData
