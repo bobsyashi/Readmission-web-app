@@ -36,6 +36,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
+      - uses: actions/checkout@v4
       - name: Add label
         run: gh pr edit "$PR_URL" --add-label "automerge"
         env:
