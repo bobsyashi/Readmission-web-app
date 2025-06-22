@@ -30,8 +30,21 @@ jobs:
           push: true
           tags: mergebot/readmission-app:latest
 
-  automerge:
+  label:
     needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Add label
+        run: gh pr edit "$PR_URL" --add-label "automerge"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+
+
+  automerge:
+    needs: label
     if: github.event.pull_request.merged == false
     runs-on: ubuntu-latest
     permissions:
