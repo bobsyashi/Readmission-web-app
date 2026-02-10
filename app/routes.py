@@ -8,7 +8,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/', methods=['GET'])
 def home():
-    return render_template('home-page.html')
+    return render_template('index.html')
 
 
 @main.route('/predict', methods=['GET'])
